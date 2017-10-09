@@ -36,8 +36,12 @@ class SiteController extends Controller
         
 
         $allroomnos = json_decode(Room::get(['roomno']));
+        
         $bookedroomnos = json_decode($bookedroomnos);
+        
         $availableroomids = array();
+        
+        
         for($i = 0; $i < count($allroomnos) ; $i++){
             if(!in_array($allroomnos[$i], $bookedroomnos)){
                 $room = Room::where('roomno', $allroomnos[$i] )->first();
