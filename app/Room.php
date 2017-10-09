@@ -11,6 +11,6 @@ class Room extends Model
     ];
 
     public function tarrif(){
-    	return $this->hasOne(Tarrif::class);
+    	return $this->belongsTo('App\Tarrif');
     }
 }

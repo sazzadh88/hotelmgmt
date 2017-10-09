@@ -1,3 +1,3 @@
-@foreach($availablerooms as $room)
+@foreach($availableroomids as $roomid)
 	{{ $room->tarrif }}
 @endforeach
