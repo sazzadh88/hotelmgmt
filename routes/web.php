@@ -20,6 +20,9 @@ Route::get('/gallery', 'SiteController@about')->name('site.gallery');
 Route::get('/rooms', 'SiteController@about')->name('site.rooms');
 Route::get('/contact', 'SiteController@about')->name('site.contact');
 Route::post('/roomsearch', 'SiteController@roomsearch')->name('roomsearch');
+Route::get('/roombook/{id}', 'SiteController@roombook')->name('roombook')->middleware('buser');;
+
+
 Route::get('/roomsearch', function(){
 	return redirect('/');
 });
@@ -58,12 +61,9 @@ Route::post('user/login', 'BuserController@verifylogin');
 
 
 
-	
-
-
-    Route::group(['middleware' => ['buser']], function () {
-    	Route::get('/user', 'BuserController@index');
-    });
+Route::group(['middleware' => ['buser']], function () {
+	Route::get('/user', 'BuserController@index');
+});
 
 
 

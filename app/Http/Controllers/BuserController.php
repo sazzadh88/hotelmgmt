@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Auth;
+use URL;
+use Redirect;
 class BuserController extends Controller
 {
     use AuthenticatesUsers;
@@ -15,8 +17,10 @@ class BuserController extends Controller
 
 
     public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'logout']);
+    {   
+     
+     $this->redirectTo = URL::previous();   
+        
         
 
     }
@@ -29,7 +33,10 @@ class BuserController extends Controller
 
 
     public function login(){
-    	return view('user.login');
+    	   
+           return view('user.login');
+
+      
     }
 
     public function verifylogin(Request $request){
@@ -38,12 +45,14 @@ class BuserController extends Controller
                    'email' => 'required|email',
                    'password' => 'required',
                ]);
-               if (auth()->guard('buser')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
-               {
-                   return "Success";
-               }else{
-                   dd('your username and password are wrong.');
-               }
+     if(auth()->guard('buser')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
+     {
+      
+      return view('site.index');
+             
+     }else{
+         dd('your username and password are wrong.');
+     }
 
     }
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $fillable = [
-        'tarrif_id', 'roomno'
+        'id','tarrif_id', 'roomno'
     ];
 
     public function tarrif(){
